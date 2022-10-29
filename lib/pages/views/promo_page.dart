@@ -16,7 +16,7 @@ class _PromoPageState extends State<PromoPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text("Payment Page"),
+        title: Text("Promo Page"),
         leading: MenuWidget(),
       ),
     );

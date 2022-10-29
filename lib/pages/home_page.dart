@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:zoom_drawer_without_getx/pages/model/menu_item.dart';
+import 'package:zoom_drawer_without_getx/pages/views/aboutUs_page.dart';
+import 'package:zoom_drawer_without_getx/pages/views/help_page.dart';
+import 'package:zoom_drawer_without_getx/pages/views/notification_page.dart';
 import 'package:zoom_drawer_without_getx/pages/views/payment_page.dart';
+import 'package:zoom_drawer_without_getx/pages/views/promo_page.dart';
+import 'package:zoom_drawer_without_getx/pages/views/rateUs_page.dart';
 
 import 'menu_page.dart';
 
@@ -27,14 +32,20 @@ class _MyHomePageState extends State<MyHomePage> {
       angle: -10,
       slideWidth: MediaQuery.of(context).size.width * 0.8,
       mainScreen: getSelectedScreen(),
-      menuScreen: MenuPage(
-        currentItem: currentItem,
-        onSelectedItem: (item){
-          setState(() {
-            currentItem = item;
-            ZoomDrawer.of(context)!.close();
-          });
-        }
+      menuScreen: Builder(
+        builder: (context){
+          return MenuPage(
+              currentItem: currentItem,
+              onSelectedItem: (item){
+                setState(() {
+                  currentItem = item;
+                });
+
+                ZoomDrawer.of(context)!.close();
+
+              }
+          );
+        },
       ),
 
     );
@@ -45,15 +56,18 @@ class _MyHomePageState extends State<MyHomePage> {
       case MenuItems.payment:
         return PaymentPage();
       case MenuItems.promos:
-        return PaymentPage();
+        return PromoPage();
       case MenuItems.notifications:
-        return PaymentPage();
+        return NotificationPage();
       case MenuItems.help:
-        return PaymentPage();
+        return HelpPage();
       case MenuItems.aboutUs:
-        return PaymentPage();
+        return AboutUsPage();
       case MenuItems.rateUs:
-        return PaymentPage();
+        return RateUsPage();
+      default:
+        return RateUsPage();
     }
+
   }
 }
